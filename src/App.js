@@ -1,13 +1,41 @@
- import Diena from "./Diena.js";
- function App(){
-    const pirmdienasStundas = ["sports", "dabaszinibas", "vesture", "krievu valoda"];
-    const otrdienasStundas = ["sports2", "dabaszinibas2", "vesture2", "krievu valoda2"];
+import Diena from './Diena.js';
+function App(){
+    const visasStundas = [
+    {diena:"Pirmdiena", 
+    stundas:[
+    'Sports',
+    'Dabaszinibas',
+    'Socialas zinibas',
+    'Krievu valoda']
+    },
+    {diena:"Otrdiena", 
+    stundas:[
+    'Sports',
+    'Dabaszinibas',
+    'Socialas zinibas']},
+    {diena:"Tresdiena", 
+    stundas:[
+    'Dabaszinibas',
+    'Socialas zinibas',
+    'Krievu valoda']},
+    {diena:"Ceturdiena", 
+    stundas:[
+    'Sports',
+    'Socialas zinibas',
+    'Krievu valoda']},
+    {diena:"Piektdiena", 
+    stundas:[
+    'Sports',
+    'Dabaszinibas']}
+];
+    const dienasJSX = visasStundas.map((diena,indekss) => {
+        return <Diena key={indekss} diena={diena.diena} stundas={diena.stundas}/>
+    })
     return (
-        <>
-    
-    <Diena diena="Pirmdiena" stundas={pirmdienasStundas}/>
-    <Diena diena="Otrdiena" stundas={otrdienasStundas}/>
-</>
-)
-}
+    <>
+    <h1>Stundu Saraksts jau šonedel</h1>
+    {dienasJSX}
+    </>)
+} 
+
 export default App;
