@@ -1,6 +1,7 @@
+import styles from "./Stunda.module.css";
 function Stunda(props) {
     return (
-        <li>{props.nosaukums}</li>
+        <li className={styles.burti}>{props.nosaukums}</li>
     )
     
 };
