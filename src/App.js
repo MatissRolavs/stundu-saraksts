@@ -9,9 +9,34 @@ function App(){
         async function getStunduSaraksts(){
             const response = await fetch("https://cheese-cake.onthewifi.com/api/lessons");
             const data = await response.json();
-            setStunduSaraksts(data.IPb22);
+            
             setIsLoading(false);
+
+            const cleansedData = [
+                {
+                  diena: "Pirmdiena",
+                  stundas: data.IPb22[0].classes,
+                },
+                {
+                  diena: "Otrdiena",
+                  stundas: data.IPb22[1].classes,
+                },
+                {
+                  diena: "Trešdiena",
+                  stundas: data.IPb22[2].classes,
+                },
+                {
+                  diena: "Ceturdiena",
+                  stundas: data.IPb22[3].classes,
+                },
+                {
+                  diena: "Piektdiena",
+                  stundas: data.IPb22[4].classes,
+                },
+              ];
+              setStunduSaraksts(cleansedData);
         }
+
         getStunduSaraksts();
     }, []);
 
@@ -19,12 +44,13 @@ function App(){
 
     
     const dienasJSX = stunduSaraksts.map((diena,indekss) => {
-        return <Diena key={indekss}  stundas={diena.classes}/>
+        return <Diena key={indekss} diena={diena.diena} stundas={diena.stundas}/>
     })
     return (
     <>
     <h1>Stundu Saraksts jau šonedel</h1>
-    {dienasJSX}
+    {isLoading ? "Loading" : dienasJSX}
+    
     </>)
 } 
 
